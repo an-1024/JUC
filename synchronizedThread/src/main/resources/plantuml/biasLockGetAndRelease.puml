@@ -1,0 +1,39 @@
+@startuml
+title "偏向锁的获得与撤销流程"
+
+|#BBFFFF|线程 1|
+start
+group "无锁状态"
+: 访问同步块;
+if (检查对象头中是否存储了线程1) then (yes)
+: 该线程不需要通过CAS竞争获取;
+else (no)
+: CAS 替换 Mark Word;
+endif
+end group
+group 偏向锁的状态
+: 成功;
+: 将对象头 Mark Word中的线程 ID 指向自己;
+note left : MarkWord 偏向锁标志位: 1
+|#BBFFFF|线程 1|
+: 执行同步体;
+(B)
+detach
+|#FFDAB9|线程 2|
+: 访问同步块;
+if (检查对象头中是否存储了线程1) then (yes)
+: 该线程不需要通过CAS竞争获取;
+else (no)
+: CAS 替换 Mark Word;
+endif
+: 不成功, 撤销了偏向锁;
+(B)
+|#BBFFFF|线程 1|
+end group
+detach
+(B)
+: 暂停线程;
+: 解锁, 将线程 ID 设置为空;
+note left : MarkWord 偏向锁标志位: 0
+: 恢复线程;
+@enduml
