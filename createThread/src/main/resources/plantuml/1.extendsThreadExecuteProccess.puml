@@ -1,0 +1,14 @@
+@startuml
+start
+:CreateThreadByRunnable runnable = new CreateThreadByRunnable() \n Thread t2 = new Thread(runnable);
+:执行 Thread 的无参构造函数 public Thread() ;
+:调用 Thread 类构造方法初始化线程: init(null, target, "Thread-" + nextThreadNum(), 0);
+if (if (threadStatus != 0) 线程是否已经启动) then (yes)
+    : 抛出线程状态异常 throw new IllegalThreadStateException();
+    stop
+else (no 线程没有启动)
+    : group.add(this) 通知该线程即将启动, 添加到线程组中，并且减少线程组的未启动计数;
+endif
+: 调用 start0() 方法来启动线程, 这是一个本地方法, 该方法在registerNatives\n 注册, 即从JVM中启动一个线程;
+stop
+@enduml
