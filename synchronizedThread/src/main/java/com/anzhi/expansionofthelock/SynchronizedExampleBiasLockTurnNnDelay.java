@@ -7,7 +7,7 @@ public class SynchronizedExampleBiasLockTurnNnDelay {
     public static void main(String[] args) {
         // jvm 中默认延迟开启偏向锁, 默认 4s 后开启。一旦开启, 不论对象是否被线程持有, 对象都处于偏向锁状态
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             //Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
