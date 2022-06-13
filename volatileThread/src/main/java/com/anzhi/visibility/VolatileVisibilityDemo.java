@@ -1,20 +1,24 @@
 package com.anzhi.visibility;
 
-public class VolatileVisibilityDemo {
-    private boolean isContinuePrintPrint = true;
+import lombok.Data;
 
-    public boolean isContinuePrintPrint(boolean isContinuePrintPrint){
-        return isContinuePrintPrint;
-    }
+@Data
+public class VolatileVisibilityDemo implements Runnable{
+    private volatile boolean isContinuePrintPrint = true;
 
     public void printStringMethodMethod(){
         try{
-            while (isContinuePrintPrint) {
-                System.out.println("run printStringMethodMethod threadName= " + Thread.currentThread().getName());
-                Thread.sleep(1000);
+            System.out.println("start run printStringMethodMethod isContinuePrintPrint = " + isContinuePrintPrint);
+            while (Boolean.TRUE.equals(isContinuePrintPrint)) {
+                // doSomthing
             }
+            System.out.println("printStringMethodMethod stop isContinuePrintPrint = " + isContinuePrintPrint);
         }catch (Exception e){
             // doNothing
         }
+    }
+
+    public void run() {
+        printStringMethodMethod();
     }
 }
