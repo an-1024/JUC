@@ -1,11 +1,17 @@
 package com.anzhi.atomicity;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class AtomicityDemo {
     public static volatile int race = 0;
 
     private static final int THREADS_COUNT = 20;
 
+    private static AtomicInteger atomicInteger = new AtomicInteger();
+
+
     public static void increase(){
+        atomicInteger.getAndIncrement();
         race++;
     }
 
@@ -30,6 +36,6 @@ public class AtomicityDemo {
         }
 
 
-        System.out.println("race 的值为: " + race);
+        System.out.println("race 的值为: " + race + " atomicInteger= " + atomicInteger.get());
     }
 }
