@@ -1,7 +1,7 @@
 package com.anzhi.memoryreordering;
 
 public class MemoryReorderingDemo {
-    private static  int x = 0, y = 0;
+    private static volatile int x = 0, y = 0;
     private static  int a = 0, b =0;
 
     public static void main(String[] args) throws InterruptedException {
