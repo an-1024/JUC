@@ -2,7 +2,7 @@ package com.anzhi.memoryreordering;
 
 public class MemoryReorderingDemo {
     private static volatile int x = 0, y = 0;
-    private static  int a = 0, b =0;
+    private static volatile int a = 0, b =0;
 
     public static void main(String[] args) throws InterruptedException {
         int i = 0;
@@ -18,15 +18,17 @@ public class MemoryReorderingDemo {
                     shortWait(100000);
                     a = 1;
                     x = b;
+                    System.out.println("one: x=" + x);
                 }
-            });
+            }, "one");
 
             Thread other = new Thread(new Runnable() {
                 public void run() {
                     b = 1;
                     y = a;
+                    System.out.println("other: y=" + y);
                 }
-            });
+            }, "other");
             one.start();
             other.start();
 
