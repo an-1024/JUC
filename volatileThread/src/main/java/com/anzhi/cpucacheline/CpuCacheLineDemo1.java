@@ -31,7 +31,7 @@ public class CpuCacheLineDemo1 {
 
     public static void main(String[] args) throws Exception{
         CpuCacheLineDemo1 cpuCacheLineDemo1 = new CpuCacheLineDemo1();
-        System.out.println("------------------------修改long数组大小为2, 并发修改数组中第 0、1 个元素-----------------------");
+        System.out.println("------------------------修改long数组大小为16, 并发修改数组中第 0、8 个元素-----------------------");
         cpuCacheLineDemo1.test();
     }
 }
