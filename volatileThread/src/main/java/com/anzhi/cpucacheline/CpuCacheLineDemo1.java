@@ -1,9 +1,10 @@
 package com.anzhi.cpucacheline;
 
 public class CpuCacheLineDemo1 {
-    private final long CYCLE_TIMES = 10_0000_0000L;
-    private volatile long[] array = new long[2];
-    public void test() throws InterruptedException {
+    private static volatile long[] array = new long[2];
+
+    public static void main(String[] args) throws Exception{
+        final long CYCLE_TIMES = 10_0000_0000L;
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -20,6 +21,8 @@ public class CpuCacheLineDemo1 {
                 }
             }
         });
+
+        System.out.println("------------------------修改long数组大小为2, 并发修改数组中第 0、1 个元素-----------------------");
         long start = System.nanoTime();
         t1.start();
         t2.start();
@@ -27,11 +30,5 @@ public class CpuCacheLineDemo1 {
         t2.join();
         long end = System.nanoTime();
         System.out.println("Duration: " + (end - start) / 100_0000);
-    }
-
-    public static void main(String[] args) throws Exception{
-        CpuCacheLineDemo1 cpuCacheLineDemo1 = new CpuCacheLineDemo1();
-        System.out.println("------------------------修改long数组大小为16, 并发修改数组中第 0、8 个元素-----------------------");
-        cpuCacheLineDemo1.test();
     }
 }
