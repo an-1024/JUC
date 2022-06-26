@@ -7,7 +7,7 @@ public class AtomicityDemo {
 
     private static final int THREADS_COUNT = 20;
 
-    private static AtomicInteger atomicInteger = new AtomicInteger();
+    private static AtomicInteger atomicInteger = new AtomicInteger(1);
 
 
     public static void increase(){
