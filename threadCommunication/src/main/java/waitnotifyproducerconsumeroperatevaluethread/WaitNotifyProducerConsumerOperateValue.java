@@ -1,8 +1,8 @@
-package waitnotifycounsumerproducerthread;
+package waitnotifyproducerconsumeroperatevaluethread;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class WaitNotifyProducerConsumer_1 {
+public class WaitNotifyProducerConsumerOperateValue {
     private static final Object lock = new Object();
 
     private static AtomicInteger count = new AtomicInteger();
