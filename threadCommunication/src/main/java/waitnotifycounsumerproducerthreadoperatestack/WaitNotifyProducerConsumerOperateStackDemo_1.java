@@ -1,4 +1,4 @@
-package waitnotifycounsumerproducerthread;
+package waitnotifycounsumerproducerthreadoperatestack;
 
 public class WaitNotifyProducerConsumerOperateStackDemo_1 {
     public static void main(String[] args) {

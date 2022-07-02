@@ -1,4 +1,4 @@
-package waitnotifycounsumerproducerthread;
+package waitnotifycounsumerproducerthreadoperatestack;
 
 public class WaitNotifyProducerConsumerOperateStackDemo_2 {
     public static void main(String[] args) throws InterruptedException {

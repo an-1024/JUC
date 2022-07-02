@@ -1,4 +1,4 @@
-package waitnotifyproducerconsumeroperatevaluethread;
+package waitnotifyproducerconsumeroperatevalue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

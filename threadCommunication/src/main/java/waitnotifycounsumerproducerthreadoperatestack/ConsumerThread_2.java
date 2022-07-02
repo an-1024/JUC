@@ -1,4 +1,4 @@
-package waitnotifycounsumerproducerthread;
+package waitnotifycounsumerproducerthreadoperatestack;
 
 public class ConsumerThread_2 implements Runnable {
 
