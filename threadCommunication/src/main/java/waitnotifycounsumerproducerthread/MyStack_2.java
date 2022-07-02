@@ -7,7 +7,7 @@ public class MyStack_2 {
     private List<String> stackList = new ArrayList<String>();
 
     synchronized public void pushStack() {
-        if (stackList.size() == 1) {
+        while (stackList.size() == 1) {
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -16,12 +16,12 @@ public class MyStack_2 {
         }
         stackList.add("anyString= " + Math.random());
         this.notify();
-        System.out.println("push= " + stackList.size());
+        System.out.println(Thread.currentThread().getName() + " push= " + stackList.size());
     }
 
     synchronized public void popStack() {
-        if (stackList.size() == 0) {
-            System.out.println("pop 操作中的 " + Thread.currentThread().getName() + " 线程状态处于 wait 状态 ！！！");
+        while (stackList.size() == 0) {
+            System.out.println(Thread.currentThread().getName() + " pop 操作中的 " + Thread.currentThread().getName() + " 线程状态处于 wait 状态 ！！！");
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -30,6 +30,6 @@ public class MyStack_2 {
         }
         stackList.remove(0);
         this.notify();
-        System.out.println("pop= " + stackList.size());
+        System.out.println(Thread.currentThread().getName() + " pop= " + stackList.size());
     }
 }
