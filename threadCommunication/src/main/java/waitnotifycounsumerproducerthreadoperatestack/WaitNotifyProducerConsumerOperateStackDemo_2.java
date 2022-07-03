@@ -24,6 +24,7 @@ public class WaitNotifyProducerConsumerOperateStackDemo_2 {
         c_ThreadA.setName("c_ThreadA");
         c_ThreadB.setName("c_ThreadB");
         c_ThreadC.setName("c_ThreadC");
+
         c_ThreadD.setName("c_ThreadD");
         c_ThreadE.setName("c_ThreadE");
 
