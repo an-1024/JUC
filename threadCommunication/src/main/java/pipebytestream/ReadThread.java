@@ -1,4 +1,4 @@
-package pipeBytestream;
+package pipebytestream;
 
 import java.io.PipedInputStream;
 
