@@ -28,7 +28,7 @@ public class ThreadLocalNormalUsage {
         //参数的单位是毫秒，从1970.1.1 00:00:00 GMT计时
         Date date = new Date(1000 * seconds);
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat dateFormat = ThreadSafeFormatter.dateFormatThreadLocal2.get();
+        SimpleDateFormat dateFormat = ThreadSafeFormatter.dateFormatThreadLocal.get();
         return dateFormat.format(date);
     }
 }
@@ -42,6 +42,6 @@ class ThreadSafeFormatter {
         }
     };
 
-    public static ThreadLocal<SimpleDateFormat> dateFormatThreadLocal2 = ThreadLocal
+    public static ThreadLocal<SimpleDateFormat> dateFormatThreadLocalMethod = ThreadLocal
             .withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 }
