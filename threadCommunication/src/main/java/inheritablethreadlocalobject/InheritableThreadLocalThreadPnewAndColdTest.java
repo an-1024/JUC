@@ -1,5 +1,8 @@
 package inheritablethreadlocalobject;
 
+/**
+ * 父线程拥有新值，子线程仍是旧值
+ */
 public class InheritableThreadLocalThreadPnewAndColdTest {
     public static void main(String[] args) {
         try{
