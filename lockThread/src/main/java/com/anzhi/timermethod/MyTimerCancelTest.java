@@ -3,7 +3,7 @@ package com.anzhi.timermethod;
 import java.util.Date;
 import java.util.Timer;
 
-public class MyTaskCancelTest {
+public class MyTimerCancelTest {
     public static void main(String[] args) {
         long nowTime = System.currentTimeMillis();
         System.out.println("当前时间为：" + nowTime);
@@ -11,7 +11,7 @@ public class MyTaskCancelTest {
         long scheduleTime = (nowTime + 15000);
         System.out.println("计划时间为: " + scheduleTime);
 
-        MyTask task = new MyTask();
+        MyTimer task = new MyTimer();
 
         Timer timer = new Timer();
         timer.schedule(task, new Date(scheduleTime));
@@ -19,7 +19,6 @@ public class MyTaskCancelTest {
         try {
             Thread.sleep(18000);
             timer.cancel();
-            Thread.sleep(Integer.MAX_VALUE);
         } catch (InterruptedException e) {
             // doNothing
         }

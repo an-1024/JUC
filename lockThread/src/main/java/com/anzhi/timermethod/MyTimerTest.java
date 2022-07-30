@@ -2,9 +2,8 @@ package com.anzhi.timermethod;
 
 import java.util.Date;
 import java.util.Timer;
-import java.util.TimerTask;
 
-public class MyTaskTest {
+public class MyTimerTest {
     public static void main(String[] args) {
         long nowTime = System.currentTimeMillis();
         System.out.println("当前时间为：" + nowTime);
@@ -12,7 +11,7 @@ public class MyTaskTest {
         long scheduleTime = (nowTime + 10000);
         System.out.println("计划时间为: " + scheduleTime);
 
-        MyTask task = new MyTask();
+        MyTimer task = new MyTimer();
 
         Timer timer = new Timer();
         try {
