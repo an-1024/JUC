@@ -14,7 +14,9 @@ public class ThreadPoolFactoryDestory {
                 new NamedThreadFactory("threadPoolDemo"),
                 new ThreadPoolExecutor.DiscardOldestPolicy());
 
+        // 关闭线程不会立刻执行，会等待线程执行完成
         threadPoolExecutor.shutdown();
+        // 设置等待线程的时间
         threadPoolExecutor.awaitTermination(1, TimeUnit.SECONDS);
     }
 }
