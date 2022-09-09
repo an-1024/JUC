@@ -31,9 +31,6 @@ public class ThreadPoolPoolCallerRunsPolicyDemoDemo {
             });
         }
 
-        // 测试 CallerRunsPolicy: 那个任务拒绝那个线程负责执行：类似于产品向开发提要求，开发没有资源，产品自己上手
-
-
         ThreadPoolExecutor tpe = ((ThreadPoolExecutor) abortPolicyThread);
         System.out.println("current queue wait count = " + tpe.getQueue().size());
         System.out.println("current active Thread count = " + tpe.getActiveCount());
