@@ -23,6 +23,9 @@ public class NamedThreadFactory implements ThreadFactory {
         Thread t = new Thread(group, r,
                 namePrefix + threadNumber.getAndIncrement(),
                 0);
+        t.setUncaughtExceptionHandler((Thread thread, Throwable e)->{
+            System.out.println(t.getName() + "线程执行异常， 异常信息为：" + e.getMessage());
+        });
         if (t.isDaemon())
             t.setDaemon(false);
         if (t.getPriority() != Thread.NORM_PRIORITY)
