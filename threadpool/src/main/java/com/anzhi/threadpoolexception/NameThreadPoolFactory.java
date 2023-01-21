@@ -28,6 +28,11 @@ public class NameThreadPoolFactory extends ThreadPoolExecutor {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
     }
 
+    /**
+     * 线程池中线程异常捕获的方法之一：继承 ThreadPoolExecutor，重写 afterExecute 方法
+     * @param r
+     * @param t
+     */
     @Override
     protected void afterExecute(Runnable r, Throwable t) {
         super.afterExecute(r, t);
