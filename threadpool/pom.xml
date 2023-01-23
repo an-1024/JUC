@@ -19,5 +19,13 @@
             <artifactId>google-collections</artifactId>
             <version>1.0</version>
         </dependency>
+
+        <!--监控代码运行时间依赖-->
+        <!-- spring核心包 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
     </dependencies>
 </project>
