@@ -14,9 +14,10 @@ public class ForkJoinDemo {
     public static void main(String[] args) {
         // 线程池核心线程数要 > 1,因为该线程池队列是无界的，所以只有核心线程数参数有效；
         // 只设置一个核心线程，在任务 TaskA 执行的时候，TaskA1，TaskA2 都会放入队列，此时 TaskA 在等待 TaskA1、A2 的返回结果阻塞
-        // TaskA1 需要等待自己的返回结果阻塞，但是因为核心线程被 TaskA 占用，最终导致 TaskA1 一致阻塞，最终导致 TaskA 阻塞
+        // TaskA1 需要等待自己的返回结果阻塞，但是因为核心线程被 TaskA 占用，最终导致 TaskA1 一致阻塞，最终导致 TaskA 阻塞, 阻塞
+        // 的原因是 awaitDone 中的 state
         // 我是这样理解的
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(2);
 
         Future<?> future = scheduledThreadPoolExecutor.submit(new TaskA(scheduledThreadPoolExecutor));
         try {
