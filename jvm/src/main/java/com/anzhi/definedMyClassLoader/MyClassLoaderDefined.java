@@ -1,10 +1,6 @@
 package com.anzhi.definedMyClassLoader;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.WritableByteChannel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,9 +25,14 @@ public class MyClassLoaderDefined extends ClassLoader{
         if (null == bytes || 0 == bytes.length) {
             throw new ClassNotFoundException();
         }
-        return defineClass(bytes, 0, bytes.length);
+        return defineClass(name, bytes, 0, bytes.length);
     }
 
+    /**
+     * 将文件转换为字节
+     * @param file
+     * @return
+     */
     private byte[] getClassData(File file) {
         try (InputStream ins = new FileInputStream(file);
              ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
@@ -40,6 +41,7 @@ public class MyClassLoaderDefined extends ClassLoader{
             while ((bytesNumRead = ins.read(buffer)) != -1) {
                 baos.write(buffer, 0, bytesNumRead);
             }
+            baos.flush();
             return baos.toByteArray();
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException 异常" + e.getMessage());
