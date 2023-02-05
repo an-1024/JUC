@@ -1,14 +1,17 @@
-package com.anzhi.definedMyClassLoader;
+package com.anzhi.definedMyFindClass;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyClassLoaderDefined extends ClassLoader{
+/**
+ * 自定义类加载器
+ */
+public class MyClassLoaderDefinedFindClass extends ClassLoader{
     private Map<String, String> classPathMap = new HashMap<>();
-    public MyClassLoaderDefined() {
+    public MyClassLoaderDefinedFindClass() {
         // 业务A的自定义类加载器
-        classPathMap.put("com.anzhi.definedMyClassLoader.LoadClassTarget.TargetClassLoad","/Users/azh/Dev_AZH/Java_St/JUC/jvm/src/main/java/com/anzhi/definedMyClassLoader/LoadClassTarget/TargetClassLoad.class");
+        classPathMap.put("com.anzhi.definedMyFindClass.LoadClassTarget.TargetClassLoad","/Users/azh/Dev_AZH/Java_St/JUC/jvm/src/main/java/com/anzhi/definedMyFindClass/LoadClassTarget/TargetClassLoad.class");
     }
 
     /**
@@ -16,15 +19,19 @@ public class MyClassLoaderDefined extends ClassLoader{
      */
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
+        // 获取指定的文件路径
         String classPath = classPathMap.get(name);
         File file = new File(classPath);
         if (!file.exists()) {
             throw new ClassNotFoundException();
         }
+
+        // 将文件内容转换为字节数组
         byte[] bytes = getClassData(file);
         if (null == bytes || 0 == bytes.length) {
             throw new ClassNotFoundException();
         }
+        // 将字节数据转换为实例对象
         return defineClass(name, bytes, 0, bytes.length);
     }
 
@@ -52,10 +59,10 @@ public class MyClassLoaderDefined extends ClassLoader{
     }
 
     public static void main(String[] args) {
-        MyClassLoaderDefined mcl = new MyClassLoaderDefined();
+        MyClassLoaderDefinedFindClass mcl = new MyClassLoaderDefinedFindClass();
         Class<?> c1 = null;
         try {
-            c1 = Class.forName("com.anzhi.definedMyClassLoader.LoadClassTarget.TargetClassLoad", true, mcl);
+            c1 = Class.forName("com.anzhi.definedMyFindClass.LoadClassTarget.TargetClassLoad", true, mcl);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

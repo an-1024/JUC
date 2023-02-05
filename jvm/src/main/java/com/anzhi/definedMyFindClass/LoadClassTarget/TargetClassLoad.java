@@ -1,4 +1,4 @@
-package com.anzhi.definedMyClassLoader.LoadClassTarget;
+package com.anzhi.definedFindClass.LoadClassTarget;
 
 public class TargetClassLoad {
     private String pathTest;
@@ -10,7 +10,7 @@ public class TargetClassLoad {
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "The Class is TargetClassLoad, pathTest = " + pathTest;
     }
 }
