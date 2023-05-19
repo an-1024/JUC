@@ -2,6 +2,9 @@ package com.anzhi.atomicdemo;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * CAS 带来的 ABA 问题
+ */
 public class CASABADemo {
     private static AtomicInteger at = new AtomicInteger(1);
     public static void main(String[] args) throws InterruptedException {
